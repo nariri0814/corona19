@@ -1,0 +1,6 @@
+.graph_box {
+  position: relative;
+  width: calc((100% - 40px) / 2);
+  margin: 10px;
+  float: left;
+}

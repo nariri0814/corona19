@@ -1,0 +1,12 @@
+.corona_state {
+  width: 400px;
+  padding: 10px 20px;
+  border: 1px solid lightslategray;
+}
+.corona_state h2 {
+  padding: 5px;
+}
+.corona_state h2 span {
+  font-size: 23px;
+  font-weight: 700;
+}

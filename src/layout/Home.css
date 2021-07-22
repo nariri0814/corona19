@@ -1,0 +1,28 @@
+.header {
+  width: 100%;
+  height: 140px;
+  background: lightslategrey;
+}
+.header_inner {
+  width: 1400px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header h1 {
+  color: #fff;
+}
+.opt_box {
+  width: 110px;
+  height: 28px;
+}
+.main {
+  width: 1400px;
+  margin: 0 auto;
+}
+.main h1 {
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
