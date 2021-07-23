@@ -40,10 +40,14 @@ function CoronaState() {
             {/* <select>{country && country.map((v,i)=><option key={v+i}>{v.Country}</option>)}</select> */}
             <div className="corona_state">
                 <h2><span>Date:</span> {date}</h2>
-                <h2><span>NewConfirmed:</span> {newConfirmed}</h2>
-                <h2><span>NewDeaths:</span> {newDeaths}</h2>
-                <h2><span>TotalConfirmed:</span> {totalConfirmed}</h2>
-                <h2><span>TotalDeaths:</span> {totalDeaths}</h2>
+                <div className="co_state_desc">
+                    <h2><span>NewConfirmed:</span> {newConfirmed}</h2>
+                    <h2><span>NewDeaths:</span> {newDeaths}</h2>
+                </div>
+                <div className="co_state_desc">
+                    <h2><span>TotalConfirmed:</span> {totalConfirmed}</h2>
+                    <h2><span>TotalDeaths:</span> {totalDeaths}</h2>
+                </div>
             </div>
             {/* {country && country.map((v,i)=><h3 key={v+i}>{v.Country}</h3>)} */}
 

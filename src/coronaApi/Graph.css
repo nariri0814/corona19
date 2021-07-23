@@ -1,3 +1,18 @@
+.graph_wrap {
+  width: 100%;
+  overflow: hidden;
+  margin: 30px 0;
+}
+.korea_corona {
+  width: 260px;
+  font-weight: 700;
+  font-size: 22px;
+}
+.korea_corona p {
+  background: #2e374c;
+  color: #fff;
+  padding: 10px;
+}
 .graph_box {
   position: relative;
   width: calc((100% - 40px) / 2);

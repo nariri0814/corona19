@@ -6,8 +6,7 @@ import './Graph.css'
 const Graph = () => {
     const [ confirmed, setConfirmed ] = useState({});
     const [ quaranted, setQuaranted ] = useState({});
-    const [ lastData, setLastData ] = useState({});
-
+    const [ lastData, setLastData ] = useState([]);
 
     useEffect(()=> {
 
@@ -49,37 +48,29 @@ const Graph = () => {
                 // console.log(Active,Confirmed,Deaths);
                 return acc;
             }, [])
-            // console.log(arr)
             const labels = arr.map(a => `${a.month+1}월`);
             setConfirmed({
                 labels,
-                datasets: [
-                    {
-                        label: '국내 누적 확진자',
-                        backgroundColor: 'salmon',
-                        fill: true,
-                        data: arr.map(a => a.confirmed)
-                    }
-                ]
+                datasets: [{
+                    label: '국내 누적 확진자',
+                    backgroundColor: 'salmon',
+                    fill: true,
+                    data: arr.map(a => a.confirmed)
+                }]
             });
             setQuaranted({
                 labels,
-                datasets: [
-                    {
-                        label: '월별 격리자 현황',
-                        borderColor: '#75b67a',
-                        fill: false,
-                        data: arr.map(a => a.active)
-                    }
-                ]
+                datasets: [{
+                    label: '월별 격리자 현황',
+                    borderColor: '#75b67a',
+                    fill: false,
+                    data: arr.map(a => a.active)
+                }]
             });
-            const last = arr[arr.length -1]
-            // setLastData({
-            //     datasets: [
-            //         {data: [last.confirmed, last.recovered, last.deaths]}
-            //     ]
-            // })
-            console.log(arr.map(a => a.confirmed))
+            const last = arr[arr.length - 1]
+            console.log(last)
+            setLastData([last.confirmed, last.recovered, last.deaths])
+
         }
         axiosData();
     }, []);
@@ -87,20 +78,24 @@ const Graph = () => {
     return (
         <div>
             <h2>국내 코로나 현황</h2>
-            <div>
-                
-            </div>
-            <div className="graph_box">
-                <Bar data={confirmed} options={
-                    { title: { display: true, text: '누적 확진자 추이', fontSize: 25} },
-                    { legend: { display: true, position: 'bottom'} }
-                }/>
-            </div>
-            <div className="graph_box">
-                <Line data={quaranted} options={
-                    { title: { display: true, text: '월별 격리자 현황', fontSize: 25} },
-                    { legend: { display: true, position: 'bottom'} }
-                }/>
+            <div className="graph_wrap">
+                <div className="korea_corona">
+                    <p>누적확진자: {lastData[0]}</p>
+                    <p>격리해제: {lastData[1]}</p>
+                    <p>사망자: {lastData[2]}</p>
+                </div>
+                <div className="graph_box">
+                    <Bar data={confirmed} options={
+                        { title: { display: true, text: '누적 확진자 추이', fontSize: 25} },
+                        { legend: { display: true, position: 'bottom'} }
+                    }/>
+                </div>
+                <div className="graph_box">
+                    <Line data={quaranted} options={
+                        { title: { display: true, text: '월별 격리자 현황', fontSize: 25} },
+                        { legend: { display: true, position: 'bottom'} }
+                    }/>
+                </div>
             </div>
         </div>
     )
