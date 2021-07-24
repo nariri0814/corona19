@@ -80,9 +80,9 @@ const Graph = () => {
             <h2>국내 코로나 현황</h2>
             <div className="graph_wrap">
                 <div className="korea_corona">
-                    <p>누적확진자: {lastData[0]}</p>
-                    <p>격리해제: {lastData[1]}</p>
-                    <p>사망자: {lastData[2]}</p>
+                    <div className="korea_box"><p>누적확진자</p>{lastData[0]}</div>
+                    <div className="korea_box"><p>격리해제</p>{lastData[1]}</div>
+                    <div className="korea_box"><p>사망자</p>{lastData[2]}</div>
                 </div>
                 <div className="graph_box">
                     <Bar data={confirmed} options={
