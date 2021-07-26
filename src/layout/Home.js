@@ -1,4 +1,3 @@
-
 import React from 'react';
 import CoronaState from '../coronaApi/CoronaState';
 import Graph from '../coronaApi/Graph';
