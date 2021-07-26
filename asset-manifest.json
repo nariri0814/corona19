@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/corona/static/css/main.04f02026.chunk.css",
-    "main.js": "/corona/static/js/main.11144b86.chunk.js",
-    "main.js.map": "/corona/static/js/main.11144b86.chunk.js.map",
-    "runtime-main.js": "/corona/static/js/runtime-main.aabbc53e.js",
-    "runtime-main.js.map": "/corona/static/js/runtime-main.aabbc53e.js.map",
-    "static/js/2.dad22c13.chunk.js": "/corona/static/js/2.dad22c13.chunk.js",
-    "static/js/2.dad22c13.chunk.js.map": "/corona/static/js/2.dad22c13.chunk.js.map",
-    "static/js/3.99bc781d.chunk.js": "/corona/static/js/3.99bc781d.chunk.js",
-    "static/js/3.99bc781d.chunk.js.map": "/corona/static/js/3.99bc781d.chunk.js.map",
+    "main.js": "/corona/static/js/main.0d544094.chunk.js",
+    "main.js.map": "/corona/static/js/main.0d544094.chunk.js.map",
+    "runtime-main.js": "/corona/static/js/runtime-main.11665e00.js",
+    "runtime-main.js.map": "/corona/static/js/runtime-main.11665e00.js.map",
+    "static/js/2.4e1c4dca.chunk.js": "/corona/static/js/2.4e1c4dca.chunk.js",
+    "static/js/2.4e1c4dca.chunk.js.map": "/corona/static/js/2.4e1c4dca.chunk.js.map",
+    "static/js/3.0682e5cf.chunk.js": "/corona/static/js/3.0682e5cf.chunk.js",
+    "static/js/3.0682e5cf.chunk.js.map": "/corona/static/js/3.0682e5cf.chunk.js.map",
     "index.html": "/corona/index.html",
     "static/css/main.04f02026.chunk.css.map": "/corona/static/css/main.04f02026.chunk.css.map",
-    "static/js/2.dad22c13.chunk.js.LICENSE.txt": "/corona/static/js/2.dad22c13.chunk.js.LICENSE.txt"
+    "static/js/2.4e1c4dca.chunk.js.LICENSE.txt": "/corona/static/js/2.4e1c4dca.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.aabbc53e.js",
-    "static/js/2.dad22c13.chunk.js",
+    "static/js/runtime-main.11665e00.js",
+    "static/js/2.4e1c4dca.chunk.js",
     "static/css/main.04f02026.chunk.css",
-    "static/js/main.11144b86.chunk.js"
+    "static/js/main.0d544094.chunk.js"
   ]
 }
