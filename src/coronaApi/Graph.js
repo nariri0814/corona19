@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Bar, Line } from 'react-chartjs-2'; 
+import { Bar, Line } from 'react-chartjs-2';
 import './Graph.css'
 
 const Graph = () => {
-    const [ confirmed, setConfirmed ] = useState({});
-    const [ quaranted, setQuaranted ] = useState({});
-    const [ lastData, setLastData ] = useState([]);
+    const [confirmed, setConfirmed] = useState({});
+    const [quaranted, setQuaranted] = useState({});
+    const [lastData, setLastData] = useState([]);
 
-    useEffect(()=> {
+    useEffect(() => {
 
         const axiosData = async () => {
-            const res = await axios.get ("https://api.covid19api.com/total/dayone/country/kr")
+            const res = await axios.get("https://api.covid19api.com/total/dayone/country/kr")
             krData(res.data)
             // .then(res => {
             //     setConfirmed(res.data.Confirmed)
@@ -20,7 +20,7 @@ const Graph = () => {
             // }).catch(error => console.log(error))
         }
         const krData = (items) => {
-            const arr = items.reduce((acc,cur)=> {
+            const arr = items.reduce((acc, cur) => {
                 const currentDate = new Date(cur.Date);
                 const year = currentDate.getFullYear();
                 const month = currentDate.getMonth();
@@ -32,9 +32,9 @@ const Graph = () => {
 
                 const matchItem = acc.find(i => i.year === year && i.month === month)
                 if (!matchItem) {
-                    acc.push({year, month, date, active, confirmed, deaths})
+                    acc.push({ year, month, date, active, confirmed, deaths })
                 }
-                if(matchItem && matchItem.date < date) {
+                if (matchItem && matchItem.date < date) {
                     matchItem.year = year;
                     matchItem.month = month;
                     matchItem.date = date;
@@ -48,7 +48,7 @@ const Graph = () => {
                 // console.log(Active,Confirmed,Deaths);
                 return acc;
             }, [])
-            const labels = arr.map(a => `${a.month+1}월`);
+            const labels = arr.map(a => `${a.month + 1}월`);
             setConfirmed({
                 labels,
                 datasets: [{
@@ -85,16 +85,16 @@ const Graph = () => {
                     <div className="korea_box"><p>사망자</p>{lastData[2]}</div>
                 </div>
                 <div className="graph_box">
-                    <Bar data={confirmed} options={
-                        { title: { display: true, text: '누적 확진자 추이', fontSize: 25} },
-                        { legend: { display: true, position: 'bottom'} }
-                    }/>
+                    <Bar data={confirmed} options={[
+                        { title: { display: true, text: '누적 확진자 추이', fontSize: 25 } },
+                        { legend: { display: true, position: 'bottom' } }
+                    ]} />
                 </div>
                 <div className="graph_box">
-                    <Line data={quaranted} options={
-                        { title: { display: true, text: '월별 격리자 현황', fontSize: 25} },
-                        { legend: { display: true, position: 'bottom'} }
-                    }/>
+                    <Line data={quaranted} options={[
+                        { title: { display: true, text: '월별 격리자 현황', fontSize: 25 } },
+                        { legend: { display: true, position: 'bottom' } }
+                    ]} />
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './CoronaState.css';
+import './GlobalCovidState.css';
 
 // async function GraphData() {
 //     const graph1data = await axios.get ("https://api.covid19api.com/summary")
@@ -10,7 +10,7 @@ import './CoronaState.css';
 // }
 // GraphData()
 
-function CoronaState() {
+function GlobalCovidState() {
     //Country, NewConfirmed, TotalConfirmed, NewDeaths, TotalDeaths, Date
     const [ country, setCountry ] = useState([]);
     const [ date, setDate ] = useState(0);
@@ -56,5 +56,5 @@ function CoronaState() {
     )
 }
 
-export default CoronaState;
+export default GlobalCovidState;
 
