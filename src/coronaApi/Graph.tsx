@@ -6,7 +6,7 @@ import './Graph.css'
 const Graph = () => {
     const [confirmed, setConfirmed] = useState({});
     const [quaranted, setQuaranted] = useState({});
-    const [lastData, setLastData] = useState([]);
+    const [lastData, setLastData] = useState<string[]>([]);
 
     useEffect(() => {
 
@@ -19,8 +19,8 @@ const Graph = () => {
             //     setDeaths(res.data.Deaths)
             // }).catch(error => console.log(error))
         }
-        const krData = (items) => {
-            const arr = items.reduce((acc, cur) => {
+        const krData = (items: any) => {
+            const arr = items.reduce((acc: any, cur: any) => {
                 const currentDate = new Date(cur.Date);
                 const year = currentDate.getFullYear();
                 const month = currentDate.getMonth();
@@ -30,7 +30,7 @@ const Graph = () => {
                 const deaths = cur.Deaths;
                 const recovered = cur.Recovered;
 
-                const matchItem = acc.find(i => i.year === year && i.month === month)
+                const matchItem = acc.find((i:any) => i.year === year && i.month === month)
                 if (!matchItem) {
                     acc.push({ year, month, date, active, confirmed, deaths })
                 }
@@ -48,14 +48,14 @@ const Graph = () => {
                 // console.log(Active,Confirmed,Deaths);
                 return acc;
             }, [])
-            const labels = arr.map(a => `${a.month + 1}월`);
+            const labels = arr.map((a:any) => `${a.month + 1}월`);
             setConfirmed({
                 labels,
                 datasets: [{
                     label: '국내 누적 확진자',
                     backgroundColor: 'salmon',
                     fill: true,
-                    data: arr.map(a => a.confirmed)
+                    data: arr.map((a:any) => a.confirmed)
                 }]
             });
             setQuaranted({
@@ -64,7 +64,7 @@ const Graph = () => {
                     label: '월별 격리자 현황',
                     borderColor: '#75b67a',
                     fill: false,
-                    data: arr.map(a => a.active)
+                    data: arr.map((a:any) => a.active)
                 }]
             });
             const last = arr[arr.length - 1]
@@ -84,7 +84,7 @@ const Graph = () => {
                     <div className="korea_box"><p>격리해제</p>{lastData[1]}</div>
                     <div className="korea_box"><p>사망자</p>{lastData[2]}</div>
                 </div>
-                <div className="graph_box">
+                {/* <div className="graph_box">
                     <Bar data={confirmed} options={[
                         { title: { display: true, text: '누적 확진자 추이', fontSize: 25 } },
                         { legend: { display: true, position: 'bottom' } }
@@ -95,7 +95,7 @@ const Graph = () => {
                         { title: { display: true, text: '월별 격리자 현황', fontSize: 25 } },
                         { legend: { display: true, position: 'bottom' } }
                     ]} />
-                </div>
+                </div> */}
             </div>
         </div>
     )
