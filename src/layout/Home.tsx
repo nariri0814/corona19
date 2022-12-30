@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+
 import GlobalCovidState from "../coronaApi/GlobalCovidState";
-import Graph from "../coronaApi/Graph";
+import KoreaCovidState from "../coronaApi/KoreaCovidState";
 
 const StyledHeader = styled.div`
   width: 100%;
@@ -29,6 +30,7 @@ const StyledMain = styled.div`
   width: 80%;
   margin: 0 auto;
   margin-top: -50px;
+  margin-bottom: 100px;
   background-color: white;
   border-radius: 10px;
   padding: 40px 30px;
@@ -55,8 +57,10 @@ const Home = () => {
       <StyledMain>
         <h1>전세계 코로나 현황</h1>
         <GlobalCovidState />
-
-        <Graph />
+      </StyledMain>
+      <StyledMain>
+        <h1>국내 코로나 현황</h1>
+        <KoreaCovidState />
       </StyledMain>
     </>
   );

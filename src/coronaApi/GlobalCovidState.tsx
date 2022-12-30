@@ -1,23 +1,47 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./GlobalCovidState.css";
+import styled from "styled-components";
 
-// async function GraphData() {
-//     const graph1data = await axios.get ("https://api.covid19api.com/summary")
-//     const CountriesData = graph1data.data.CountriesData
+const Container = styled.div`
+  width: 780px;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border: 1px solid #d0d0d0;
+  border-radius: 10px;
+  text-align: center;
 
-//     return CountriesData;
-// }
-// GraphData()
+  h2 {
+    padding: 5px;
+  }
+
+  h2 span {
+    font-size: 23px;
+    font-weight: 700;
+  }
+
+  .desc_box {
+    width: calc((100% - 40px) / 2);
+    margin: 0 10px;
+    text-align: left;
+    float: left;
+  }
+`;
 
 function GlobalCovidState() {
-  //Country, NewConfirmed, TotalConfirmed, NewDeaths, TotalDeaths, Date
   const [country, setCountry] = useState([]);
   const [date, setDate] = useState(0);
-  const [newConfirmed, setNewConfirmed] = useState(0);
-  const [newDeaths, setNewDeaths] = useState(0);
-  const [totalConfirmed, setTotalConfirmed] = useState(0);
-  const [totalDeaths, setTotalDeaths] = useState(0);
+
+  const [covidSummary, setCovidSummary] = useState<{
+    newConfirmed: number;
+    newDeaths: number;
+    totalConfirmed: number;
+    totalDeaths: number;
+  }>({
+    newConfirmed: 0,
+    newDeaths: 0,
+    totalConfirmed: 0,
+    totalDeaths: 0,
+  });
 
   useEffect(() => {
     axios
@@ -29,37 +53,41 @@ function GlobalCovidState() {
       .catch((error) => console.log(error))
       .then((res) => {
         setDate(res.Date.split("T")[0]);
-        setNewConfirmed(res.NewConfirmed);
-        setNewDeaths(res.NewDeaths);
-        setTotalConfirmed(res.TotalConfirmed);
-        setTotalDeaths(res.TotalDeaths);
+        setCovidSummary({
+          newConfirmed: res.NewConfirmed,
+          newDeaths: res.NewDeaths,
+          totalConfirmed: res.TotalConfirmed,
+          totalDeaths: res.TotalDeaths,
+        });
       });
   }, []);
 
   return (
     <>
       {/* <select>{country && country.map((v,i)=><option key={v+i}>{v.Country}</option>)}</select> */}
-      <div className="corona_state">
+      <Container>
         <h2>
           <span>Date:</span> {date}
         </h2>
-        <div className="co_state_desc">
+        <div className="desc_box">
           <h2>
-            <span>NewConfirmed:</span> {newConfirmed.toLocaleString()}
+            <span>일일 확진자 :</span>{" "}
+            {covidSummary.newConfirmed.toLocaleString()}
           </h2>
           <h2>
-            <span>NewDeaths:</span> {newDeaths.toLocaleString()}
-          </h2>
-        </div>
-        <div className="co_state_desc">
-          <h2>
-            <span>TotalConfirmed:</span> {totalConfirmed.toLocaleString()}
-          </h2>
-          <h2>
-            <span>TotalDeaths:</span> {totalDeaths.toLocaleString()}
+            <span>일일 사망자 :</span> {covidSummary.newDeaths.toLocaleString()}
           </h2>
         </div>
-      </div>
+        <div className="desc_box">
+          <h2>
+            <span>총 확진자 :</span>{" "}
+            {covidSummary.totalConfirmed.toLocaleString()}
+          </h2>
+          <h2>
+            <span>총 사망자 :</span> {covidSummary.totalDeaths.toLocaleString()}
+          </h2>
+        </div>
+      </Container>
       {/* {country && country.map((v,i)=><h3 key={v+i}>{v.Country}</h3>)} */}
     </>
   );
