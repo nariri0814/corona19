@@ -1,19 +1,18 @@
-import React from 'react';
+import React from "react";
 // import { HashRouter, Route } from 'react-router-dom';
-import Home from './layout/Home';
+import Home from "./layout/Home";
 // import Overseas from './coronaApi/Overseas';
 
 function App() {
   return (
     <>
-    
-    {/* // <HashRouter>
+      {/* // <HashRouter>
     //   <Route path="/" exact={true} component={Home}/>
     //   <Route path="/overseas" component={Overseas}/>
     // </HashRouter> */}
-    <Home/>
+      <Home />
     </>
-  )
+  );
 }
 
 export default App;

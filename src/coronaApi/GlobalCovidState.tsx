@@ -50,7 +50,6 @@ function GlobalCovidState() {
         setCountry(res.data.Countries);
         return res.data.Global;
       })
-      .catch((error) => console.log(error))
       .then((res) => {
         setDate(res.Date.split("T")[0]);
         setCovidSummary({
@@ -59,7 +58,8 @@ function GlobalCovidState() {
           totalConfirmed: res.TotalConfirmed,
           totalDeaths: res.TotalDeaths,
         });
-      });
+      })
+      .catch((error) => console.log(error));
   }, []);
 
   return (
