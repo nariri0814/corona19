@@ -4,6 +4,10 @@ import styled from "styled-components";
 
 import { Line } from "react-chartjs-2";
 import { ChartData } from "chart.js";
+import { Row } from "antd";
+import { Col } from "antd/es/grid";
+import Card from "antd/es/card";
+import { CovidKoreaTotal } from "../models/covid.model";
 
 type TChart =
   | ChartData<"line", number[], string>
@@ -45,83 +49,66 @@ const StyledGraph = styled.div`
 `;
 
 const KoreaCovidState = () => {
-  const [confirmed, setConfirmed] = useState<TChart>();
-  const [deaths, setDeaths] = useState<TChart>();
+  const [data, setData] = useState<any>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [lastData, setLastData] = useState<number[]>([]);
+  const getCovidDatas = async () => {
+    setIsLoading(true);
+    const korea = await axios
+      .get(
+        "https://api.corona-19.kr/korea/?serviceKey=H9cBn51QJlgePUFziKA6wqD3kXST48WEO"
+      )
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+    console.log(korea);
+    setData(korea);
+    setIsLoading(false);
+  };
 
   useEffect(() => {
-    const axiosData = async () => {
-      const res = await axios.get(
-        "https://api.covid19api.com/total/dayone/country/kr"
-      );
-      krData(res.data);
-    };
-    const krData = (items: any) => {
-      const arr = items.reduce((acc: any, cur: any) => {
-        const currentDate = new Date(cur.Date);
-        const year = currentDate.getFullYear();
-        const month = currentDate.getMonth();
-        const date = currentDate.getDate();
-
-        const active = cur.Active;
-        const confirmed = cur.Confirmed;
-        const deaths = cur.Deaths;
-        const recovered = cur.Recovered;
-
-        const matchItem = acc.find(
-          (i: any) => i.year === year && i.month === month
-        );
-        if (!matchItem) {
-          acc.push({ year, month, date, active, confirmed, deaths });
-        }
-        if (matchItem && matchItem.date < date) {
-          matchItem.year = year;
-          matchItem.month = month;
-          matchItem.date = date;
-
-          matchItem.active = active;
-          matchItem.confirmed = confirmed;
-          matchItem.deaths = deaths;
-          matchItem.recovered = recovered;
-        }
-
-        return acc;
-      }, []);
-      const labels = arr.map((a: any) => `${a.month + 1}월`);
-      setConfirmed({
-        labels: labels?.slice(labels.length - 10, labels.length),
-        datasets: [
-          {
-            label: "확진자",
-            backgroundColor: "salmon",
-            data: arr
-              .map((a: any) => a.confirmed)
-              .slice(labels.length - 10, labels.length),
-          },
-        ],
-      });
-      setDeaths({
-        labels: labels?.slice(labels.length - 10, labels.length),
-        datasets: [
-          {
-            label: "사망자",
-            backgroundColor: "red",
-            data: arr
-              .map((a: any) => a.deaths)
-              .slice(labels.length - 10, labels.length),
-          },
-        ],
-      });
-      const last = arr[arr.length - 1];
-      setLastData([last.confirmed, last.recovered, last.deaths]);
-    };
-    axiosData();
+    getCovidDatas();
   }, []);
 
   return (
     <>
-      <Container>
+      {data && (
+        <Row gutter={16}>
+          {/* 업데이트 시간: */}
+          <Col span={8}>
+            <Card
+              size="small"
+              title="확진자"
+              bordered={false}
+              loading={isLoading}
+              bodyStyle={{ color: "#5673EB" }}
+            >
+              {data.korea?.totalCnt}
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card
+              size="small"
+              title="사망자"
+              bordered={false}
+              loading={isLoading}
+              bodyStyle={{ color: "#EB5374" }}
+            >
+              {data.korea?.deathCnt}
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card
+              size="small"
+              title="발생률"
+              bordered={false}
+              loading={isLoading}
+            >
+              {data.korea?.qurRate}
+            </Card>
+          </Col>
+        </Row>
+      )}
+      {/* <Container>
         <Inner>
           <div className="desc_box">
             <p>누적확진자</p>
@@ -138,7 +125,7 @@ const KoreaCovidState = () => {
         </Inner>
         <StyledGraph>{confirmed && <Line data={confirmed} />}</StyledGraph>
         <StyledGraph>{deaths && <Line data={deaths} />}</StyledGraph>
-      </Container>
+      </Container> */}
     </>
   );
 };

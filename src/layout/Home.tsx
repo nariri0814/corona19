@@ -54,10 +54,10 @@ const Home = () => {
           {/* <select>{country && country.map((v,i)=><option key={v+i}>{v.Country}</option>)}</select> */}
         </div>
       </StyledHeader>
-      <StyledMain>
+      {/* <StyledMain>
         <h1>전세계 코로나 현황</h1>
         <GlobalCovidState />
-      </StyledMain>
+      </StyledMain> */}
       <StyledMain>
         <h1>국내 코로나 현황</h1>
         <KoreaCovidState />

@@ -51,6 +51,7 @@ function GlobalCovidState() {
         return res.data.Global;
       })
       .then((res) => {
+        console.log("res", res);
         setDate(res.Date.split("T")[0]);
         setCovidSummary({
           newConfirmed: res.NewConfirmed,
