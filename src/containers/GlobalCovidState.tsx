@@ -28,7 +28,7 @@ const Container = styled.div`
 `;
 
 function GlobalCovidState() {
-  const [country, setCountry] = useState([]);
+  // const [country, setCountry] = useState([]);
   const [date, setDate] = useState(0);
 
   const [covidSummary, setCovidSummary] = useState<{
@@ -47,7 +47,7 @@ function GlobalCovidState() {
     axios
       .get("https://api.covid19api.com/summary")
       .then((res) => {
-        setCountry(res.data.Countries);
+        // setCountry(res.data.Countries);
         return res.data.Global;
       })
       .then((res) => {
