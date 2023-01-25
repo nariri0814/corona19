@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Chart from "chart.js/auto";
+// import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 
 export const ConfirmedGraph = (props: any) => {
@@ -44,11 +44,11 @@ export const ConfirmedGraph = (props: any) => {
   console.log("@@", graphNewcase);
 
   const graphData = {
-    labels: graphNewcase.map((v) => v.x),
+    labels: graphNewcase?.map((v) => v.x),
     datasets: [
       {
         label: "신규 확진자 수(명)",
-        data: graphNewcase,
+        data: graphNewcase ?? [],
         backgroundColor: [
           "#fdf8b7",
           "#fcea9f",
@@ -79,28 +79,24 @@ export const ConfirmedGraph = (props: any) => {
 
   return (
     <>
-      <Bar
-        options={{
-          plugins: {
-            title: {
-              display: true,
-              text: "지역별 신규확진자 수",
+      {graphData && (
+        <Bar
+          options={{
+            plugins: {
+              title: {
+                display: true,
+                text: "지역별 신규확진자 수",
+              },
             },
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
+            scales: {
+              y: {
+                alignToPixels: true,
+              },
             },
-          },
-          // scales: {
-          //   yAxes: {
-          //     max: 4000,
-          //
-          //   },
-          // },
-        }}
-        data={graphData}
-      />
+          }}
+          data={graphData}
+        />
+      )}
     </>
   );
 };
