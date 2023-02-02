@@ -30,7 +30,6 @@ export const StyledMain = styled.div`
   background-color: white;
   border-radius: 10px;
   padding: 40px 30px;
-  // border: 1px solid #dee2e6;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   display: flex;
   flex-direction: column;
@@ -66,4 +65,22 @@ export const TotalContainer = styled.div`
   margin: 20px 0;
   display: flex;
   justify-content: space-evenly;
+`;
+
+export const GraphContainer = styled.div`
+  width: 90%;
+  margin-top: 40px;
+`;
+
+export const StyledDetail = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+
+  a {
+    text-decoration: none;
+    color: #6f6f6f;
+    font-size: 0.9rem;
+  }
 `;

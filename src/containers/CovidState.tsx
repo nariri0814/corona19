@@ -1,43 +1,27 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { Link } from "react-router-dom";
+import { RightOutlined } from "@ant-design/icons";
+
+import { CountryQuery } from "../modules/apis/CountryQuery";
 
 import { TotalState } from "./TotalState";
 import { ConfirmedGraph } from "./ConfirmedGraph";
+import { StyledDetail } from "../StyledComponents/StyledComponents";
 
 const CovidState = () => {
-  const [data, setData] = useState<any>();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const getCovidDatas = async () => {
-    setIsLoading(true);
-    // const data = await axios
-    //   .get(
-    //     "https://api.corona-19.kr/korea/?serviceKey=H9cBn51QJlgePUFziKA6wqD3kXST48WEO"
-    //   )
-    //   .then((res) => res.data)
-    //   .catch((err) => console.log(err));
-
-    const data = await axios
-      .get(
-        "https://api.corona-19.kr/korea/country/new/?serviceKey=H9cBn51QJlgePUFziKA6wqD3kXST48WEO"
-      )
-      .then((res) => res.data)
-      .catch((err) => console.log(err));
-    console.log("data", data);
-    setData(data);
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    getCovidDatas();
-  }, []);
+  const { isLoading, isError, data } = CountryQuery();
 
   return (
     <>
-      {data && !isLoading && (
+      {data && !isLoading && !isError && (
         <>
-          <TotalState data={data} />
-          <ConfirmedGraph data={data} />
+          <TotalState data={data.data} />
+          <ConfirmedGraph data={data.data} />
+          <StyledDetail>
+            <Link to="/countryDetail">
+              지역별 현황 자세히 보기
+              <RightOutlined />
+            </Link>
+          </StyledDetail>
         </>
       )}
     </>

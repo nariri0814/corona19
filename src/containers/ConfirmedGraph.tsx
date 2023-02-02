@@ -1,54 +1,26 @@
-import React, { useEffect } from "react";
-// import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
+import { GraphContainer } from "../StyledComponents/StyledComponents";
 
 export const ConfirmedGraph = (props: any) => {
   const { data } = props;
-  //   const labeled = Object.keys(data);
-  //   for (let i = 0; i < labeled.length; i++) {
-  //     if (labeled[i] === "resultCode") {
-  //       labeled.splice(i, 1);
-  //       i--;
-  //     }
-  //     if (labeled[i] === "resultMessage") {
-  //       labeled.splice(i, 1);
-  //       i--;
-  //     }
-  //     if (labeled[i] === "korea") {
-  //       labeled.splice(i, 1);
-  //       i--;
-  //     }
-  //     if (labeled[i] === "quarantine") {
-  //       labeled.splice(i, 1);
-  //       i--;
-  //     }
-  //   }
-  //   const graphNewcase = Object.entries(data)
-  //     .map((v: any) => {
-  //       if (v[0] === "korea") return undefined;
-  //       if (v[0] === "quarantine") return undefined;
-  //       return v[1].newCase;
-  //     })
-  //     .filter((el) => el !== undefined);
 
   const graphNewcase = Object.entries(data)
     .map((v: any) => {
       return {
         x: v[1].countryName,
-        y: v[1].newCase,
+        y: parseInt(v[1].newCase?.replace(/,/g, "")),
       };
     })
     .filter((el) => el.x !== undefined)
     .filter((el) => el.x !== "합계")
     .filter((el) => el.x !== "검역");
-  console.log("@@", graphNewcase);
 
   const graphData = {
     labels: graphNewcase?.map((v) => v.x),
     datasets: [
       {
         label: "신규 확진자 수(명)",
-        data: graphNewcase ?? [],
+        data: graphNewcase,
         backgroundColor: [
           "#fdf8b7",
           "#fcea9f",
@@ -73,12 +45,9 @@ export const ConfirmedGraph = (props: any) => {
       },
     ],
   };
-  useEffect(() => {
-    console.log("data", data);
-  }, [data]);
 
   return (
-    <>
+    <GraphContainer>
       {graphData && (
         <Bar
           options={{
@@ -90,13 +59,13 @@ export const ConfirmedGraph = (props: any) => {
             },
             scales: {
               y: {
-                alignToPixels: true,
+                stacked: true,
               },
             },
           }}
           data={graphData}
         />
       )}
-    </>
+    </GraphContainer>
   );
 };

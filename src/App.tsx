@@ -1,16 +1,15 @@
 import React from "react";
-// import { HashRouter, Route } from 'react-router-dom';
+import { Route, Routes } from "react-router";
+import { CountryDetail } from "./containers/CountryDetail";
 import Home from "./layout/Home";
-// import Overseas from './coronaApi/Overseas';
 
 function App() {
   return (
     <>
-      {/* // <HashRouter>
-    //   <Route path="/" exact={true} component={Home}/>
-    //   <Route path="/overseas" component={Overseas}/>
-    // </HashRouter> */}
-      <Home />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/countryDetail" element={<CountryDetail />} />
+      </Routes>
     </>
   );
 }
