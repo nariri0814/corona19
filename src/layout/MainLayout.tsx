@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from "react";
-import { StyledHeader, StyledMain } from "../StyledComponents/StyledComponents";
+import { StyledHeader, StyledMain } from "../styles/StyledComponents";
 interface MainLayoutProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const MainLayout = ({ children, ...props }: MainLayoutProps) => {

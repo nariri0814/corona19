@@ -78,8 +78,12 @@ export const StyledDetail = styled.div`
   justify-content: flex-end;
   margin-top: 15px;
 
-  a {
+  /* a {
     text-decoration: none;
+    color: #6f6f6f;
+    font-size: 0.9rem;
+  } */
+  .link-to {
     color: #6f6f6f;
     font-size: 0.9rem;
   }

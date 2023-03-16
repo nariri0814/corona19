@@ -1,5 +1,5 @@
 import { Bar } from "react-chartjs-2";
-import { GraphContainer } from "../StyledComponents/StyledComponents";
+import { GraphContainer } from "../styles/StyledComponents";
 
 export const ConfirmedGraph = (props: any) => {
   const { data } = props;

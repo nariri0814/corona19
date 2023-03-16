@@ -4,8 +4,6 @@ import { ColumnsType } from "antd/lib/table";
 import { CountryQuery } from "../modules/apis/CountryQuery";
 import { TCol } from "../modules/models/country.model";
 
-import { MainLayout } from "../layout/MainLayout";
-
 export const CountryDetail = () => {
   const { isLoading, isError, data } = CountryQuery();
 
@@ -62,7 +60,7 @@ export const CountryDetail = () => {
   }
 
   return (
-    <MainLayout>
+    <>
       {tableData && (
         <Table
           columns={columns}
@@ -70,6 +68,6 @@ export const CountryDetail = () => {
           style={{ width: "100%" }}
         />
       )}
-    </MainLayout>
+    </>
   );
 };

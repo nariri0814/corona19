@@ -1,9 +1,6 @@
 // import { Badge } from "antd";
 
-import {
-  StyledTotalBox,
-  TotalContainer,
-} from "../StyledComponents/StyledComponents";
+import { StyledTotalBox, TotalContainer } from "../styles/StyledComponents";
 
 export const TotalState = (props: any) => {
   const { data } = props;
