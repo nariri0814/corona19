@@ -12,6 +12,10 @@
 
 -chart.js 패기지를 이용해 그래프화
 
+### 지역별 상세현황 표로 보여주기
+![covid_3](https://github.com/nariri0814/covid19/assets/83111728/2bfab6d5-f958-432d-8595-676a3e5a03b2)
+
+
 
 ## 폴더구조
 ```
